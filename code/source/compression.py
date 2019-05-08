@@ -8,8 +8,17 @@ Created on Sun Apr 28 15:35:46 2019
 
 import sys
 import math
+import argparse
 
-#distance calculaton between two points  
+#Input data
+argparser = argparse.ArgumentParser(description='compression')
+argparser.add_argument("--data")
+argparser.add_argument("--dataA")
+argparser.add_argument("--dataB")
+argparser.add_argument("--dataC")
+argparser.add_argument("--output")
+arg = argparser.parse_args()
+#function for distance calculaton between two points  
 def dist(point1, point2):
     
     value= math.sqrt((float(point1[0])-float(point2[0]))**2 + (float(point1[1])-float(point2[1]))**2 + (float(point1[2])-float(point2[2]))**2)
@@ -25,34 +34,34 @@ four=[] #decompressed C
 
 #Input files are stored in tsv format
        
-with open('/Users/prathibha/Documents/Teraki3DRecruitmentTestApr19/input/Car_XYZI_uncompressed_ASCII.tsv', 'r') as f:
+with open(arg.data, 'r') as f:
     lines=f.readlines() 
     for line in lines[:-1]:
         x,y,z,a = line.split()
         one.append((x,y,z,a))  #Addition of the points from uncompressed tsv to list 'one'
    
-with open('/Users/prathibha/Documents/Teraki3DRecruitmentTestApr19/input/Car_XYZI_decompressed_ASCII_A.tsv', 'r') as f:
+with open(arg.dataA, 'r') as f:
     lines=f.readlines()
     for line in lines[:-1]:
         x,y,z,a = line.split()
         two.append((x,y,z,a))   #Addition of the points from decompressed A tsv to list 'two'
 
  
-with open('/Users/prathibha/Documents/Teraki3DRecruitmentTestApr19/input/Car_XYZI_decompressed_ASCII_B.tsv', 'r') as f:
+with open(arg.dataB, 'r') as f:
     lines=f.readlines()
     for line in lines[:-1]:
         x,y,z,a = line.split()
-        three.append((x,y,z,a))   #Addition of the points from decompressed B tsv to list 'three'
+        three.append((x,y,z,a))   #Addition of the points from decompressed A tsv to list 'three'
         
  
-with open('/Users/prathibha/Documents/Teraki3DRecruitmentTestApr19/input/Car_XYZI_decompressed_ASCII_C.tsv', 'r') as f:
+with open(arg.dataC, 'r') as f:
     lines=f.readlines()
     for line in lines[:-1]:
         x,y,z,a = line.split()
-        four.append((x,y,z,a))    #Addition of the points from decompressed C tsv to list 'four'
+        four.append((x,y,z,a))    #Addition of the points from decompressed A tsv to list 'four'
         
      
-with open('/Users/prathibha/Documents/Teraki3DRecruitmentTestApr19/output/outputfile.tsv', 'w') as f:
+with open(arg.output, 'w') as f:
     for point in one:
         nearestA = None
         nearestB = None
@@ -84,13 +93,13 @@ with open('/Users/prathibha/Documents/Teraki3DRecruitmentTestApr19/output/output
         f.write("%f %f %f %f %f %f %f\n"%(float(point[0]), float(point[1]), float(point[2]),float(nearestA[0]),float(nearestA[1]),float(nearestA[2]),float(distanceA)))
         f.write("%f %f %f %f %f %f %f\n"%(float(point[0]), float(point[1]), float(point[2]),float(nearestB[0]),float(nearestB[1]),float(nearestB[2]),float(distanceB)))
         f.write("%f %f %f %f %f %f %f\n"%(float(point[0]), float(point[1]), float(point[2]),float(nearestB[0]),float(nearestB[1]),float(nearestB[2]),float(distanceB)))
-print("Average distance between the points sets of Uncompressed and Decompressed A" ,sumA)
-print("Average distance between the points sets of Uncompressed and Decompressed B" ,sumB)
-print("Average distance between the points sets of Uncompressed and Decompressed C" ,sumC)
+print("Maximum distance between the points sets of Uncompressed and Decompressed A" ,sumA)
+print("Maximum distance between the points sets of Uncompressed and Decompressed B" ,sumB)
+print("Maximum distance between the points sets of Uncompressed and Decompressed C" ,sumC)
 dict={}
 dict[sumA]="A"
 dict[sumB]="B"
 dict[sumC]="C"
-print(dict)
+#Geometric Accuracy measure: maximum distance between the point sets of uncompressed and ordered decompressed point cloud 
 print("Best compression Technique : " ,dict[min(sumA,sumB,sumC)])  
 print("Worst compression Technique : " ,dict[max(sumA,sumB,sumC)]) 
