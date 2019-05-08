@@ -7,6 +7,7 @@ The same result has been Obtained by implementing the logic in Python. The input
 
 
 To run the code:
+
 python compression.py --data Enter uncompressed.tsv Input file name --dataA Enter dataA.tsv Input file name
   --dataB Enter dataC.tsv Input file name --dataC Enter dataC.tsv Input file name --output Enter output file name
 
