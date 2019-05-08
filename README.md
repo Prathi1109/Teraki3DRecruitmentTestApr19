@@ -15,6 +15,8 @@ Geometric Accuracy measure considered is Maximum distance. If the distance betwe
 
 Output of the program:
 
+The output_file has been created with the points x_uncompressed, y_uncompressed, z_uncompressed, z_decompressed, y_decompressed, z_decompressed, distance in the tsv format.
+
 Maximum distance between the points sets of Uncompressed and Decompressed A 21.194809956055153
 Maximum distance between the points sets of Uncompressed and Decompressed B 2.982278145404609
 Maximum distance between the points sets of Uncompressed and Decompressed C 142.8205332553303
