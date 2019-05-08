@@ -2,7 +2,7 @@
 
 
 By using CloudCompare visualisation, the rank of the compression methods from best to worst accuracy is B,A,C.
-The same result has been Obtained by implementing the logic in Python. The input files and output files are created in the tsv format.
+The same result has been obtained by implementing the logic in Python. The input files and output files are created in the tsv format.
 
 
 
@@ -18,7 +18,7 @@ Output of the program:
 Maximum distance between the points sets of Uncompressed and Decompressed A 21.194809956055153
 Maximum distance between the points sets of Uncompressed and Decompressed B 2.982278145404609
 Maximum distance between the points sets of Uncompressed and Decompressed C 142.8205332553303
-{21.194809956055153: 'A', 2.982278145404609: 'B', 142.8205332553303: 'C'}
+
 Best compression Technique :  B
 Worst compression Technique :  C
 
